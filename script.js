@@ -1,7 +1,5 @@
-
 const maptilerKey = "4CHvvrHJ9EnxPMxYto8d";
-const shadeMapKey =
-    "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImtyaXN0aWphbmtyYWxldnNraTRAZ21haWwuY29tIiwiY3JlYXRlZCI6MTc0ODUyNzM1NTM1NSwiaWF0IjoxNzQ4NTI3MzU1fQ.YFiMN3q0ShAoUYa2j9MHhNde_Qj6bidmdQ91HxjCgBQ";
+const shadeMapKey = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImtyaXN0aWphbmtyYWxldnNraTRAZ21haWwuY29tIiwiY3JlYXRlZCI6MTc0ODUyNzM1NTM1NSwiaWF0IjoxNzQ4NTI3MzU1fQ.YFiMN3q0ShAoUYa2j9MHhNde_Qj6bidmdQ91HxjCgBQ";
 const WEATHER_API_KEY = "8a48baf68292fe3068c6cee9b99cf24b";
 const SKOPJE_COORDS = { lat: 41.998, lon: 21.435 };
 
@@ -89,6 +87,9 @@ map.on("load", async () => {
     );
     cafeFeatures = cafes.features;
 
+    // Set initial cafe count
+    document.getElementById("cafeCount").textContent = cafeFeatures.length;
+
     // Add shadow source and layer first
     map.addSource("shadow-source", {
         type: "geojson",
@@ -108,7 +109,7 @@ map.on("load", async () => {
         },
     });
 
-    // Then add cafes
+    // Add cafes source and layer
     map.addSource("cafes", {
         type: "geojson",
         data: cafes,
@@ -149,14 +150,11 @@ map.on("load", async () => {
         const feature = e.features[0];
         const name = feature.properties.name || "Unknown Café";
         const street = feature.properties["addr:street"] || "Unknown street";
-        const isInSun = feature.properties.in_sun;
-        const sunStatus = isInSun ? "🌞 In sunlight" : "🌚 In shadow";
 
         const popupHtml = `
           <div class="cafe-popup">
             <h3>${name}</h3>
             <p>${street}</p>
-            <div class="sun-status">${sunStatus}</div>
           </div>
         `;
 
@@ -247,7 +245,7 @@ map.on("load", async () => {
         );
         const isDaytime = sunPosition.altitude > 0;
 
-        cafeFeatures.forEach((feature, index) => {
+        cafeFeatures.forEach((feature) => {
             const [lng, lat] = feature.geometry.coordinates;
 
             // Check if the point intersects with the shadow layer
@@ -265,15 +263,8 @@ map.on("load", async () => {
             features: cafeFeatures,
         });
 
-        // Update stats
-        const sunnyCount = cafeFeatures.filter(
-            (f) => f.properties.in_sun
-        ).length;
-        const shadowCount = cafeFeatures.filter(
-            (f) => !f.properties.in_sun
-        ).length;
-        document.getElementById("sunnyCount").textContent = sunnyCount;
-        document.getElementById("shadowCount").textContent = shadowCount;
+        // Reapply current filters after updating sun status
+        updateFilters();
     }
 
     // Time slider logic
@@ -289,43 +280,57 @@ map.on("load", async () => {
     });
 
     // Filter controls
-    document.getElementById("showSunny").addEventListener("change", (e) => {
-        const visibility = e.target.checked ? "visible" : "none";
-        map.setLayoutProperty("cafe-symbols", "visibility", visibility);
-        updateCafeSunStatus();
-    });
+    let currentFilters = {
+        showSunny: true,
+        showShadow: true,
+        searchTerm: ''
+    };
 
-    document
-        .getElementById("showShadow")
-        .addEventListener("change", (e) => {
-            const visibility = e.target.checked ? "visible" : "none";
-            map.setLayoutProperty("cafe-symbols", "visibility", visibility);
-            updateCafeSunStatus();
+    function updateFilters() {
+        const searchTerm = currentFilters.searchTerm.toLowerCase().trim();
+        
+        // Create base filter for sun/shadow
+        const sunFilter = ['any',
+            ['all', ['==', ['get', 'in_sun'], true], currentFilters.showSunny],
+            ['all', ['==', ['get', 'in_sun'], false], currentFilters.showShadow]
+        ];
+
+        // If search is empty, just use sun filter
+        if (searchTerm === '') {
+            map.setFilter('cafes-layer', sunFilter);
+            map.setFilter('cafe-symbols', sunFilter);
+            document.getElementById("cafeCount").textContent = cafeFeatures.length;
+            return;
+        }
+
+        // Create search filter expression
+        const searchFilter = ['any',
+            ['in', searchTerm, ['downcase', ['get', 'name']]],
+            ['in', searchTerm, ['downcase', ['get', 'addr:street']]]
+        ];
+
+        // Combine search and sun filters
+        const combinedFilter = ['all', sunFilter, searchFilter];
+        
+        // Apply filter to both layers
+        map.setFilter('cafes-layer', combinedFilter);
+        map.setFilter('cafe-symbols', combinedFilter);
+
+        // Update the cafe count
+        const filteredFeatures = cafeFeatures.filter(feature => {
+            const name = (feature.properties.name || '').toLowerCase();
+            const street = (feature.properties['addr:street'] || '').toLowerCase();
+            return name.includes(searchTerm) || street.includes(searchTerm);
         });
+        document.getElementById("cafeCount").textContent = filteredFeatures.length;
+    }
 
     // Search functionality
-    document
-        .getElementById("searchInput")
-        .addEventListener("input", (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const features = map.querySourceFeatures("cafes");
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+        currentFilters.searchTerm = e.target.value;
+        updateFilters();
+    });
 
-            features.forEach((feature) => {
-                const name = feature.properties.name?.toLowerCase() || "";
-                const street =
-                    feature.properties["addr:street"]?.toLowerCase() || "";
-                const isVisible =
-                    name.includes(searchTerm) || street.includes(searchTerm);
-
-                map.setFeatureState(
-                    { source: "cafes", id: feature.id },
-                    { visible: isVisible }
-                );
-            });
-        });
-
-    // Initial update after a short delay to ensure layers are ready
-    setTimeout(() => {
-        updateCafeSunStatus();
-    }, 1000);
+    // Initial update
+    updateCafeSunStatus();
 });
