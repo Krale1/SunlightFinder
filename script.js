@@ -72,7 +72,7 @@ setInterval(updateWeather, 30 * 60 * 1000);
 
 const map = new maplibregl.Map({
     container: "map",
-    style: `https://api.maptiler.com/maps/streets/style.json?key=${maptilerKey}`,
+    style: `https://api.maptiler.com/maps/openstreetmap/style.json?key=${maptilerKey}`,
     center: [21.435, 41.998],
     zoom: 16,
     pitch: 0,
