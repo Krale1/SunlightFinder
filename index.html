@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skopje Cafés + Shadows</title>
-    <link
-      href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
     <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
     <script src="https://unpkg.com/mapbox-gl-shadow-simulator/dist/mapbox-gl-shadow-simulator.umd.min.js"></script>
     <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
-    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <link href="./style.css" rel="stylesheet" />
   </head>
   <body>
     <div id="sidebar">
@@ -29,22 +26,10 @@
           <div class="weather-icon" id="weatherIcon">⛅</div>
         </div>
         <div class="weather-details">
-          <div class="weather-detail">
-            <span>🌡️ Feels like:</span>
-            <span id="feelsLike">--°C</span>
-          </div>
-          <div class="weather-detail">
-            <span>💨 Wind:</span>
-            <span id="windSpeed">-- km/h</span>
-          </div>
-          <div class="weather-detail">
-            <span>💧 Humidity:</span>
-            <span id="humidity">--%</span>
-          </div>
-          <div class="weather-detail">
-            <span>☀️ UV Index:</span>
-            <span id="uvIndex">--</span>
-          </div>
+          <div class="weather-detail"><span>🌡️ Feels like:</span><span id="feelsLike">--°C</span></div>
+          <div class="weather-detail"><span>💨 Wind:</span><span id="windSpeed">-- km/h</span></div>
+          <div class="weather-detail"><span>💧 Humidity:</span><span id="humidity">--%</span></div>
+          <div class="weather-detail"><span>☀️ UV Index:</span><span id="uvIndex">--</span></div>
         </div>
         <div class="weather-update" id="weatherUpdate">Last updated: --</div>
       </div>
@@ -52,39 +37,19 @@
       <div class="stats">
         <div class="stat-item">
           <div class="stat-icon">☕</div>
-          <div class="stat-text">
-            Cafés found: <span id="cafeCount">0</span>
-          </div>
+          <div class="stat-text">Cafés found: <span id="cafeCount">0</span></div>
         </div>
       </div>
 
       <div class="controls">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search for a café..."
-        />
+        <input type="text" id="searchInput" placeholder="Search for a café..." />
         <div class="filter-group">
-          <label class="filter-label">
-            <input type="checkbox" id="showSunny" checked /> 🌞 Show sunny spots
-          </label>
-          <label class="filter-label">
-            <input type="checkbox" id="showShadow" checked /> 🌚 Show shady spots
-          </label>
+          <label class="filter-label"><input type="checkbox" id="showSunny" checked /> 🌞 Show sunny spots</label>
+          <label class="filter-label"><input type="checkbox" id="showShadow" checked /> 🌚 Show shady spots</label>
         </div>
         <div class="time-slider-container">
-          <label for="timeSlider" class="time-label">
-            Time of Day: <span id="timeValue">12:00</span>
-          </label>
-          <input
-            type="range"
-            id="timeSlider"
-            min="0"
-            max="23"
-            value="12"
-            step="1"
-            class="time-slider"
-          />
+          <label for="timeSlider" class="time-label">Time of Day: <span id="timeValue">12:00</span></label>
+          <input type="range" id="timeSlider" min="0" max="23" value="12" step="1" class="time-slider" />
         </div>
       </div>
 
@@ -95,7 +60,6 @@
     </div>
 
     <div id="map"></div>
-
     <script src="./script.js"></script>
   </body>
 </html>
