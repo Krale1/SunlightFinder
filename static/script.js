@@ -24,6 +24,11 @@ map.on('load', async () => {
   cafeFeatures = cafes.features;
   document.getElementById("cafeCount").textContent = cafeFeatures.length;
 
+  // Initialize time slider with current hour
+  const currentHour = new Date().getHours();
+  timeSlider.value = currentHour;
+  timeValue.textContent = `${currentHour.toString().padStart(2, "0")}:00`;
+
   map.addSource("shadow-source", {
     type: "geojson",
     data: { type: "FeatureCollection", features: [] },
@@ -40,7 +45,7 @@ map.on('load', async () => {
   });
 
   const baseDate = new Date();
-  baseDate.setHours(12, 0, 0, 0);
+  baseDate.setHours(new Date().getHours(), 0, 0, 0);
 
   shadeMap = new ShadeMap({
     apiKey: shadeMapKey,
