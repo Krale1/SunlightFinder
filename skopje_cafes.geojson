@@ -16,7 +16,7 @@
         "addr:street": "Ленинова",
         "amenity": "cafe",
         "building": "yes",
-        "name": "Coffee Factory",
+        "name": "Кофи Фектори",
         "indoor": 0,
         "bar_orientation": 349,
         "@geometry": "center"
@@ -135,7 +135,7 @@
         "addr:postcode": "1000",
         "amenity": "pub",
         "building": "yes",
-        "name": "Tribeca - Botanic Shop & Cafe",
+        "name": "Трибека",
         "indoor": 0,
         "bar_orientation": 97,
         "operator": "Tribeca - Botanic Shop & Cafe",
@@ -274,7 +274,7 @@
         "building": "yes",
         "description": "Print/Copy Shop",
         "bar_orientation": 359,
-        "name": "Krug",
+        "name": "Круг",
         "indoor": 0,
         "opening_hours": "PH,Mo-Su 09:00-24:00",
         "shop": "copyshop",
@@ -304,7 +304,7 @@
         "int_name": "Кафе Дизајн",
         "internet_access": "wlan",
         "bar_orientation": 188,
-        "name": "My Space cafe",
+        "name": "Мај Спејс",
         "indoor": 0,
         "name:en": "My Space",
         "name:mk": "Мај Спејс",
@@ -355,7 +355,7 @@
         "@id": "way/1306526920",
         "amenity": "cafe",
         "bar_orientation": 145,
-        "name": "Greenhill",
+        "name": "Гринхил",
         "indoor": 0,
         "@geometry": "center"
       },
@@ -375,7 +375,7 @@
         "amenity": "bar",
         "building": "yes",
         "bar_orientation": 44,
-        "name": "Makka",
+        "name": "Макка",
         "indoor": 0,
         "@geometry": "center"
       },
@@ -395,7 +395,7 @@
         "amenity": "cafe",
         "building": "yes",
         "bar_orientation": 199,
-        "name": "Broz Cafe",
+        "name": "Броз Кафе",
         "indoor": 0,
         "name:mk": "Броз Кафе",
         "@geometry": "center"
@@ -438,7 +438,7 @@
         "amenity": "cafe",
         "indoor_seating": "yes",
         "bar_orientation": 98,
-        "name": "Revija",
+        "name": "Ревија",
         "indoor": 0,
         "name:en": "Revija",
         "name:mk": "Ревија",
@@ -500,7 +500,7 @@
         "@id": "node/1876583691",
         "amenity": "cafe",
         "bar_orientation": 300,
-        "name": "Top Foxx",
+        "name": "Топ Фокс",
         "indoor": 0,
         "opening_hours": "Su-Fr 11:00-24:00, Sa 11:00-01:00"
       },
@@ -539,7 +539,7 @@
         "@id": "node/2298054794",
         "amenity": "cafe",
         "bar_orientation": 44,
-        "name": "Badu",
+        "name": "Баду",
         "indoor": 0
     },
 
@@ -629,7 +629,7 @@
         "addr:postcode": "1000",
         "amenity": "cafe",
         "bar_orientation": 129,
-        "name": "The Gallery",
+        "name": "Галери",
         "indoor": 0,
         "opening_hours": "Mo-Th 07:30-24:00, Fr 07:30-01:00, Sa 08:00-01:00, Su 08:00-24:00"
       },
@@ -670,7 +670,7 @@
         "@id": "node/3750783154",
         "amenity": "cafe",
         "bar_orientation": 151,
-        "name": "Play Cafe",
+        "name": "Плеј Кафе",
         "indoor": 0
       },
 
@@ -712,7 +712,7 @@
         "@id": "node/5284221299",
         "amenity": "bar",
         "bar_orientation": 319,
-        "name": "Van Gogh",
+        "name": "Ван Гох",
         "indoor": 0
       },
 
@@ -733,7 +733,7 @@
         "amenity": "bar",
         "check_date": "2024-09-30",
         "bar_orientation": 19,
-        "name": "Centar Bar",
+        "name": "Центар бар",
         "indoor": 1,
         "opening_hours": "Mo-Su 09:00-23:00"
       },
@@ -757,7 +757,7 @@
         "amenity": "cafe",
         "check_date": "2025-01-04",
         "bar_orientation": 118,
-        "name": "Mikel",
+        "name": "Микел",
         "indoor": 0,
         "name:en": "Vinyl",
         "website": "https://www.facebook.com/vinylmk/"
@@ -777,7 +777,7 @@
         "@id": "node/5659318796",
         "amenity": "bar",
         "bar_orientation": 267,
-        "name": "Radio bar",
+        "name": "Радио бар",
         "indoor": 0,
         "opening_hours": "PH,Mo-Su 09:00-24:00, Fr,Sa 09:00-01:00"
       },
@@ -799,7 +799,7 @@
         "diet:vegetarian": "yes",
         "indoor_seating": "no",
         "bar_orientation": 91,
-        "name": "The Top of Vodno Millennium Cross Coffee Bar Skopje",
+        "name": "Водно Крст кафе бар",
         "indoor": 0,
         "opening_hours:signed": "no",
         "outdoor_seating": "yes",
@@ -821,7 +821,7 @@
         "@id": "node/6054048730",
         "amenity": "pub",
         "bar_orientation": 190,
-        "name": "Woodstock",
+        "name": "Вудсток",
         "indoor": 0,
         "smoking": "yes",
         "takeaway": "yes",
@@ -843,7 +843,7 @@
         "@id": "node/6054049813",
         "amenity": "cafe",
         "bar_orientation": 202,
-        "name": "Mezzo",
+        "name": "Мецо",
         "indoor": 0
     },
 
@@ -867,7 +867,7 @@
         "amenity": "cafe",
         "cuisine": "sandwich;coffee_shop;bakery;ice_cream",
         "bar_orientation": 107,
-        "name": "Joy Café & Bakery (Karposh)",
+        "name": "Џои Кофи & Бејкери (Карпош) ",
         "indoor": 0,
         "outdoor_seating": "yes",
         "phone": "+389 2 307 6955",
@@ -888,7 +888,7 @@
         "@id": "node/6501316341",
         "amenity": "bar",
         "bar_orientation": 205,
-        "name": "BKW Hybrid Bar",
+        "name": "БКВ",
         "indoor": 0,
         "outdoor_seating": "yes"
       },
@@ -908,7 +908,7 @@
         "amenity": "bar",
         "cuisine": "buschenschank;international",
         "bar_orientation": 50,
-        "name": "Three Kitchen Bar",
+        "name": "Три Кичен Бар",
         "indoor": 0
     },
 
@@ -927,7 +927,7 @@
         "@id": "node/6812666808",
         "amenity": "bar",
         "bar_orientation": 23,
-        "name": "Distrikt",
+        "name": "Дистрикт",
         "indoor": 1,
         "opening_hours": "Su-Th 07:00-24:00, Fr,Sa 07:00-01:00"
       },
@@ -972,7 +972,7 @@
         "check_date:opening_hours": "2021-02-15",
         "indoor_seating": "yes",
         "bar_orientation": 158,
-        "name": "Marvel Coffee Bar",
+        "name": "Марвел",
         "indoor": 0,
         "opening_hours": "Mo-Su 08:00-24:00",
         "outdoor_seating": "yes",
@@ -993,7 +993,7 @@
         "@id": "node/9200216438",
         "amenity": "cafe",
         "bar_orientation": 106,
-        "name": "Lafe",
+        "name": "Ла Фе",
         "indoor": 0
     },
 
@@ -1012,7 +1012,7 @@
         "@id": "node/10154507143",
         "amenity": "cafe",
         "bar_orientation": 39,
-        "name": "Chloé Café",
+        "name": "Клое Кафе",
         "indoor": 0
     },
 
@@ -1050,7 +1050,7 @@
         "@id": "node/11684037891",
         "amenity": "bar",
         "bar_orientation": 192,
-        "name": "Mambo Gin Tonic Bar",
+        "name": "Мамбо Џин Тоник Бар",
          "indoor": 0
       },
 
@@ -1076,7 +1076,7 @@
         "internet_access": "yes",
         "internet_access:fee": "no",
         "bar_orientation": 275,
-        "name": "Lipa Cafe",
+        "name": "Липа Кафе",
         "indoor": 0,
         "name:mk": "Кафе „Липа”",
         "opening_hours": "Mo-Fr 08:00-18:00; Sa-Su 09:00-17:00",
@@ -1155,7 +1155,7 @@
         "@id": "node/12215569201",
         "amenity": "cafe",
         "bar_orientation": 165,
-        "name": "Кафе Snooze",
+        "name": "Кафе Снуз",
         "indoor": 0,
         "name:en": "Snooze Café"
       },
@@ -1178,7 +1178,7 @@
         "addr:street": "Kosturski Heroi 15",
         "amenity": "cafe",
         "bar_orientation": 280,
-        "name": "Cafe Bar Che",
+        "name": "Кафе Бар Че",
         "indoor": 0,
         "name:mk": "Кафе Че",
         "opening_hours": "Mo-Su 08:00-00:00"
@@ -1197,7 +1197,7 @@
       "properties": {
         "@id": "node/99900000001",
         "amenity": "cafe",
-        "name": "Duplo",
+        "name": "Дупло",
         "indoor": 0,
         "bar_orientation": 180
       },
@@ -1215,7 +1215,7 @@
       "properties": {
         "@id": "node/99900000002",
         "amenity": "cafe",
-        "name": "The Dude Specialty Coffee",
+        "name": "Дуд Спешалти Кофи",
         "indoor": 0,
         "bar_orientation": 89
       },
@@ -1233,7 +1233,7 @@
       "properties": {
         "@id": "node/99900000003",
         "amenity": "cafe",
-        "name": "Ulica 22",
+        "name": "Улица 22",
         "indoor": 0,
         "bar_orientation": 217
       },
@@ -1251,7 +1251,7 @@
       "properties": {
         "@id": "node/99900000004",
         "amenity": "cafe",
-        "name": "Rutina Coffee House",
+        "name": "Рутина Кафе",
         "indoor": 0,
         "bar_orientation": 194
       },
@@ -1269,7 +1269,7 @@
       "properties": {
         "@id": "node/99900000005",
         "amenity": "bar",
-        "name": "Dobar Bar",
+        "name": "Добар бар",
         "indoor": 0,
         "bar_orientation": 11
       },
@@ -1287,7 +1287,7 @@
       "properties": {
         "@id": "node/99900000006",
         "amenity": "cafe",
-        "name": "ABC Tennis Club",
+        "name": "АБЦ Тенис Клуб",
         "indoor": 0,
         "bar_orientation": 192
       },
@@ -1305,7 +1305,7 @@
       "properties": {
         "@id": "node/99900000007",
         "amenity": "cafe",
-        "name": "EDGE Specialty Coffee",
+        "name": "Еџ Спешалти Кофи",
         "indoor": 0,
         "bar_orientation": 183
       },
