@@ -93,8 +93,14 @@ def evaluate_model(model, X_train, X_test, y_train, y_test, model_name):
         feature_importance = None
         if hasattr(model, 'feature_importances_'):
             feature_importance = model.feature_importances_
+            # Normalize feature importance for LightGBM
+            if model_name == 'LightGBM':
+                feature_importance = feature_importance / feature_importance.sum()
         elif hasattr(model, 'coef_'):
             feature_importance = np.abs(model.coef_[0])
+            # Normalize coefficients for linear models
+            if model_name in ['Logistic Regression', 'SVM']:
+                feature_importance = feature_importance / feature_importance.sum()
 
         return {
             'accuracy': accuracy,

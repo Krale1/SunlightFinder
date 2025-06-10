@@ -1,0 +1,146 @@
+Sunlight Finder - Model Evaluation Results (Real Numbers)
+====================================================
+
+Testing Methodology
+------------------
+1. Dataset Preparation:
+   - Dataset size: 1416 samples
+   - Features: latitude, longitude, hour, outdoor_seating, sun_bar_angle_diff
+   - Target distribution: {0: 0.577683615819209, 1: 0.422316384180791}
+   - Train/Test split: 75%/25%
+   - Cross-validation: 5-fold
+
+Model Testing Results
+-------------------
+
+Random Forest
+Accuracy: 91.2%
+Precision (Sun/No Sun): 92.1%/90.7%
+Recall (Sun/No Sun): 84.8%/95.4%
+F1-score (Sun/No Sun): 88.3%/93.0%
+Avg. Prediction Time: 2.14ms
+Model Size: 1.6MB
+Training Time: 0.1s
+Cross-validation Score: 92.3% (�1.8%)
+
+Feature Importance:
+   hour: 67.5%
+   sun_bar_angle_diff: 14.1%
+   longitude: 9.4%
+   latitude: 8.3%
+   outdoor_seating: 0.8%
+
+XGBoost
+Accuracy: 93.2%
+Precision (Sun/No Sun): 93.2%/93.2%
+Recall (Sun/No Sun): 89.1%/95.8%
+F1-score (Sun/No Sun): 91.1%/94.5%
+Avg. Prediction Time: 2.08ms
+Model Size: 0.2MB
+Training Time: 0.1s
+Cross-validation Score: 92.0% (�1.9%)
+
+Feature Importance:
+   hour: 70.3%
+   latitude: 8.7%
+   outdoor_seating: 7.6%
+   longitude: 7.0%
+   sun_bar_angle_diff: 6.3%
+
+LightGBM
+Accuracy: 93.5%
+Precision (Sun/No Sun): 93.2%/93.7%
+Recall (Sun/No Sun): 89.9%/95.8%
+F1-score (Sun/No Sun): 91.5%/94.7%
+Avg. Prediction Time: 1.16ms
+Model Size: 0.3MB
+Training Time: 0.2s
+Cross-validation Score: 92.7% (�1.7%)
+
+Feature Importance:
+   latitude: 26.7%
+   sun_bar_angle_diff: 25.4%
+   hour: 23.4%
+   longitude: 23.2%
+   outdoor_seating: 1.3%
+
+SVM
+Accuracy: 59.0%
+Precision (Sun/No Sun): 46.7%/64.3%
+Recall (Sun/No Sun): 35.5%/74.1%
+F1-score (Sun/No Sun): 40.3%/68.8%
+Avg. Prediction Time: 0.49ms
+Model Size: 0.1MB
+Training Time: 0.1s
+Cross-validation Score: 60.5% (�2.0%)
+
+Neural Network
+Accuracy: 89.0%
+Precision (Sun/No Sun): 86.7%/90.4%
+Recall (Sun/No Sun): 84.8%/91.7%
+F1-score (Sun/No Sun): 85.7%/91.0%
+Avg. Prediction Time: 0.49ms
+Model Size: 0.0MB
+Training Time: 0.3s
+Cross-validation Score: 90.9% (�1.5%)
+
+Logistic Regression
+Accuracy: 59.0%
+Precision (Sun/No Sun): 46.4%/63.8%
+Recall (Sun/No Sun): 32.6%/75.9%
+F1-score (Sun/No Sun): 38.3%/69.3%
+Avg. Prediction Time: 0.47ms
+Model Size: 0.0MB
+Training Time: 0.0s
+Cross-validation Score: 58.3% (�1.4%)
+
+Feature Importance:
+   longitude: 45.0%
+   outdoor_seating: 27.7%
+   latitude: 22.5%
+   hour: 3.8%
+   sun_bar_angle_diff: 1.0%
+
+
+Model Selection Analysis
+----------------------
+
+Best performing model: LightGBM (93.5% accuracy)
+
+Model Comparison:
+
+Random Forest:
+  - Accuracy: 91.2%
+  - Prediction Time: 2.14ms
+  - Model Size: 1.6MB
+  - Training Time: 0.1s
+
+XGBoost:
+  - Accuracy: 93.2%
+  - Prediction Time: 2.08ms
+  - Model Size: 0.2MB
+  - Training Time: 0.1s
+
+LightGBM:
+  - Accuracy: 93.5%
+  - Prediction Time: 1.16ms
+  - Model Size: 0.3MB
+  - Training Time: 0.2s
+
+SVM:
+  - Accuracy: 59.0%
+  - Prediction Time: 0.49ms
+  - Model Size: 0.1MB
+  - Training Time: 0.1s
+
+Neural Network:
+  - Accuracy: 89.0%
+  - Prediction Time: 0.49ms
+  - Model Size: 0.0MB
+  - Training Time: 0.3s
+
+Logistic Regression:
+  - Accuracy: 59.0%
+  - Prediction Time: 0.47ms
+  - Model Size: 0.0MB
+  - Training Time: 0.0s
