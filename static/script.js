@@ -7,11 +7,12 @@ let map;
 let shadeMap;
 let cafeFeatures = [];
 let emojiMarkers = [];
+let filteredCafes = [];
 
 map = new maplibregl.Map({
   container: "map",
   style: `https://api.maptiler.com/maps/streets/style.json?key=${maptilerKey}`,
-  center: [21.435, 41.998],
+  center: [21.425, 42.000],
   zoom: 16,
   attributionControl: true
 });
@@ -22,6 +23,7 @@ map.on('load', async () => {
   const response = await fetch("/cafes.geojson");
   const cafes = await response.json();
   cafeFeatures = cafes.features;
+  filteredCafes = [];
   document.getElementById("cafeCount").textContent = cafeFeatures.length;
 
   // Initialize time slider with current hour
@@ -144,10 +146,27 @@ function createMarkerWithTransition(emoji, lat, lng, popupContent) {
   return marker;
 }
 
+// Add search input event listener
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  filteredCafes = cafeFeatures.filter(feature => {
+    const name = (feature.properties.name || '').toLowerCase();
+    const nameEn = (feature.properties['name:en'] || '').toLowerCase();
+    const nameMk = (feature.properties['name:mk'] || '').toLowerCase();
+    return name.includes(searchTerm) || nameEn.includes(searchTerm) || nameMk.includes(searchTerm);
+  });
+  updateCafesWithSunlight(parseInt(timeSlider.value));
+});
+
+// Update the updateCafesWithSunlight function to use filteredCafes
 async function updateCafesWithSunlight(hour) {
   const showSunny = document.getElementById("showSunny").checked;
   const showShadow = document.getElementById("showShadow").checked;
   const isNighttime = hour >= 21 || hour <= 5;
+  const cafesToProcess = filteredCafes.length > 0 ? filteredCafes : cafeFeatures;
+
+  // First update the count based on filtered results
+  let visibleCafes = 0;
 
   emojiMarkers.forEach(marker => {
     const el = marker.getElement();
@@ -159,9 +178,9 @@ async function updateCafesWithSunlight(hour) {
     emojiMarkers = [];
 
     if (isNighttime) {
-      cafeFeatures.forEach((feature) => {
+      cafesToProcess.forEach((feature) => {
         if (!showShadow) return;
-        
+        visibleCafes++;
         const lat = feature.geometry.coordinates[1];
         const lng = feature.geometry.coordinates[0];
         const popupContent = `<strong>${feature.properties.name}</strong><br>🌚 (Nighttime)`;
@@ -171,7 +190,7 @@ async function updateCafesWithSunlight(hour) {
       });
     } else {
       try {
-        const cafesPayload = cafeFeatures.map((feature) => ({
+        const cafesPayload = cafesToProcess.map((feature) => ({
           lat: feature.geometry.coordinates[1],
           lng: feature.geometry.coordinates[0],
           name: feature.properties.name || '',
@@ -196,7 +215,7 @@ async function updateCafesWithSunlight(hour) {
         }
 
         predictions.forEach((data, i) => {
-          const feature = cafeFeatures[i];
+          const feature = cafesToProcess[i];
           if (!feature) return;
           
           const lat = feature.geometry.coordinates[1];
@@ -206,6 +225,7 @@ async function updateCafesWithSunlight(hour) {
           const displayEmoji = isSunny ? '🌞' : '🌚';
 
           if ((isSunny && showSunny) || (!isSunny && showShadow)) {
+            visibleCafes++;
             const popupContent = `<strong>${feature.properties.name}</strong><br>${displayEmoji}`;
             const marker = createMarkerWithTransition(displayEmoji, lat, lng, popupContent);
             emojiMarkers.push(marker);
@@ -214,7 +234,8 @@ async function updateCafesWithSunlight(hour) {
 
       } catch (err) {
         console.error('Batch prediction error:', err);
-        cafeFeatures.forEach((feature) => {
+        cafesToProcess.forEach((feature) => {
+          visibleCafes++;
           const lat = feature.geometry.coordinates[1];
           const lng = feature.geometry.coordinates[0];
           const popupContent = `<strong>${feature.properties.name}</strong><br>⚠️ Error loading data`;
@@ -223,6 +244,8 @@ async function updateCafesWithSunlight(hour) {
         });
       }
     }
+    // Update the cafe count to show only visible cafes (those that match both search and filters)
+    document.getElementById("cafeCount").textContent = visibleCafes;
   }, 200);
 }
 
